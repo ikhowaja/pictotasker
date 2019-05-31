@@ -1,0 +1,55 @@
+.ProfileImage
+{
+    border-radius: 350px;
+    height:auto ;
+    max-width:50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    
+
+}
+.PofileTitile , .card-title
+{
+    padding-top: 10px;
+    font-family: 'Verdana-Bold', 'Verdana';
+    font-weight: bold;
+    color: #0885C7;
+}
+
+.card-title
+{
+    font-family: 'Verdana-Bold', 'Verdana';
+    font-weight: bold;
+    color:black
+}
+
+
+.card
+{
+    width: 110%;
+    height:auto;
+  
+}
+
+
+
+.taskimage
+{
+    border-radius: 50%;
+    width: 20%;
+    height: auto;
+    float: left;
+}
+.tasklist
+{
+  
+    float: right;
+}
+
+.tasktext
+{
+    float: left;
+    padding-left: 20px
+  
+}

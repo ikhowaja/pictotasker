@@ -1,0 +1,66 @@
+body, html {
+height: 100%;
+}
+
+.Form
+{
+    padding-top:40px;
+}
+
+.New{
+    color: white;
+ }
+
+
+input::placeholder{
+    text-align: center;
+ }
+
+.form-signin
+{
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-control
+{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signup input[type="password"],.form-signup input[type="text"],.form-signup input[type="email"]
+{
+    border-radius: 50px; 
+    -moz-border-radius: 50px; 
+    -webkit-border-radius: 50px; 
+    border: 2px solid #0885C7;
+    background-color :white; 
+}
+
+
+
+
+
+.profile-img
+{
+    width: auto;
+    height: 200px;
+    margin: 0 auto 10px;
+    display: block;
+ 
+}
+
+.btn-round-lg
+{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    border-radius: 50px;
+}
+
