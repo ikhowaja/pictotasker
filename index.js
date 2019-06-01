@@ -34,6 +34,8 @@ server = app.listen(process.env.PORT ||5000, function(){
 
 
 io = socket(server);
+io.set({transports:["xhr-polling"]});
+
 
 io.on('connection', (socket) => {
     console.log(socket.id);
