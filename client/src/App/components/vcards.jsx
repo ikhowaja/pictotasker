@@ -84,7 +84,7 @@ class vcards extends Component {
         M.Modal.init(elems, { opacity: 1 });
         var self = this;
         
-        axios.post('http://localhost:5000/token', {
+        axios.post('https://infinite-oasis-18891.herokuapp.com/token', {
             username: self.state.newusername
           
         })
