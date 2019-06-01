@@ -3,8 +3,10 @@ var cfenv = require("cfenv");
 const jwt = require('jwt-simple');
 var express = require("express");
 var user = require('../models/user');
-var multer=require('multer')
+
 var router = express.Router();
+const AccessToken = require('twilio').jwt.AccessToken;
+const VideoGrant = AccessToken.VideoGrant;
 
 var cloudant, mydb;
 
@@ -40,6 +42,13 @@ if (cloudant) {
 }
 /*----------------------------------------------------------------------------------------------*/
 
+const twilioAccountSid = 'AC5938395f66b03f9813dd368aff0b73c2';
+const twilioApiKey = 'SKe9438e45ca3b4ccb8fa5523b2aab5a27';
+const twilioApiSecret = 'xHk8eTFBdHZzJC7uFyesstqoyoqXzrxk';
+const videoGrant = new VideoGrant({
+  room: 'Picot',
+});
+const twilioToken = new AccessToken(twilioAccountSid, twilioApiKey, twilioApiSecret);
 
 // /*------------------------------All User Routes and Configuration--------------------------------*/
 // router.post('/token', function (req, res, next) {
@@ -48,20 +57,12 @@ if (cloudant) {
 //   twilioToken.addGrant(videoGrant);
 //   res.send(twilioToken.toJwt());
 // });
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + file.originalname)
-  }
+router.post('/token', function (req, res, next) {
+  var username = req.body.username;
+  twilioToken.identity = username.toString();
+  twilioToken.addGrant(videoGrant);
+  res.send(twilioToken.toJwt());
 });
-
-
-const upload = multer({
-  storage: storage,
-  limits:{fileSize: 1000000},
-})
 
 /*------------------------------For Signin/Login--------------------------------*/
 router.post('/users/signin', function (req, res, next) {
@@ -172,7 +173,7 @@ function tokenForUser(user) {
 
 
 
-router.route("/users/signup").post(upload.single('imageData'), (req, res, next) => {
+router.post('/users/signup', function (req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
   var fullname = req.body.fullname;

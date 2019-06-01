@@ -9,11 +9,13 @@ import Chat from './views/chat'
 import Signup from './views/signup'
 import Dashboard from './views/dashboard'
 import Profile from './views/profile'
+import Videochat from './views/videochat';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import reducers from './reducers'
 import LoadingComponent from './components/loading/loading'
+
 
 
 const store = createStore(
@@ -55,7 +57,7 @@ async componentDidMount() {
           <Route path='/signup' component={Signup} />
           <Route path='/profile' component={Profile} />
           <Route path="/dashboard" render={()=><Dashboard name={this.state.data} />} />
-
+          <Route exact path='/videochat' render={(props) => <Videochat name={this.state.data} />} />
          {/* // <Route path='/dashboard' component={Dashboard} /> */}
 
         </Switch>

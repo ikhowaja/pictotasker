@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+var cors = require('cors')
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -9,7 +10,13 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 var socket = require('socket.io');
 
 
-
+app.use(cors({
+    'allowedHeaders': ['Content-Type'], // headers that React is sending to the API
+    'exposedHeaders': ['Content-Type'], // headers that you are sending back to React
+    'origin': '*',
+    'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    'preflightContinue': false
+}));
 
 
 // An api endpoint that returns a short list of items
