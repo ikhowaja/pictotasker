@@ -2,11 +2,12 @@ const express = require('express');
 const path = require('path');
 const app = express();
 var bodyParser = require('body-parser');
+const server = require('http').createServer(app);
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 var usersController = require("./controllers/userController")
 app.use(express.static(path.join(__dirname, 'client/build')));
-var socket = require('socket.io');
+var io = require('socket.io')(server)
 
 
 
@@ -25,24 +26,16 @@ app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
-
-server = app.listen(process.env.PORT ||5000, function(){
-    console.log('server is running on port 5000')
-});
-
-
-
-
-io = socket(server);
-io.set({transports:["xhr-polling"]});
+const port = process.env.PORT || 5000;
 
 
 io.on('connection', (socket) => {
-    console.log(socket.id);
+	console.log(socket.id);
 
-    socket.on('SEND_MESSAGE', function(data){
-        io.emit('RECEIVE_MESSAGE', data);
-    })
+	socket.on('SEND_MESSAGE', function (data) {
+		io.emit('RECEIVE_MESSAGE', data);
+	})
 });
 
 
+server.listen(port);
