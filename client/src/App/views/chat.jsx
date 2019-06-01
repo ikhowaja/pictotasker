@@ -11,7 +11,7 @@ class Chat extends React.Component{
             messages: []
         };
 
-        this.socket = io('localhost:5000');
+        this.socket = io("https://infinite-oasis-18891.herokuapp.com");
 
         this.socket.on('RECEIVE_MESSAGE', function(data){
             addMessage(data);
