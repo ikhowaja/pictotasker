@@ -6,9 +6,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 var usersController = require("./controllers/userController")
 app.use(express.static(path.join(__dirname, 'client/build')));
-app.use('/uploads',express.static('uploads'))
-
-
+var socket = require('socket.io');
 
 
 
@@ -27,7 +25,22 @@ app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
-const port = process.env.PORT || 5000;
-app.listen(port);
 
-console.log('App is listening on port ' + port);
+server = app.listen(process.env.PORT ||5000, function(){
+    console.log('server is running on port 5000')
+});
+
+
+
+
+io = socket(server);
+
+io.on('connection', (socket) => {
+    console.log(socket.id);
+
+    socket.on('SEND_MESSAGE', function(data){
+        io.emit('RECEIVE_MESSAGE', data);
+    })
+});
+
+

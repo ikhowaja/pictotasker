@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import './App.css';
 import Home from './pages/Home';
 import List from './pages/List';
 import Header from './components/header'
 import Footer from './components/footer'
+import Chat from './views/chat'
 //import Login from './views/login'
 import Signup from './views/signup'
 import Dashboard from './views/dashboard'
-import Chat from './views/chat'
 import Profile from './views/profile'
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
