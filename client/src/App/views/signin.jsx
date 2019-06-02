@@ -30,13 +30,6 @@ class Signin extends Component {
                             <div className="form-header">
                                 Login
                              </div>
-                            <Form.Group>
-                                <Form.Control as="select">
-                                    <option>---LoginType---</option>
-                                    <option>Admin</option>
-                                    <option>User</option>
-                                </Form.Control>
-                            </Form.Group>
                             <Form.Group controlId="username">
                                 <Field name="username" type="text" component="input" autoComplete="none" placeholder="Username" />
                             </Form.Group>
