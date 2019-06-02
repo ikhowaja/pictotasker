@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css/dist/js/materialize.min.js'
-import 'bootstrap/dist/css/bootstrap.css';
 import logo from '../images/Logo.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -10,7 +9,7 @@ class Header extends Component {
     renderLinks() {
         if (this.props.authenticated) {
             return (
-                <ul id="nav-mobile" className="float-right header-links">
+                <ul className="page-header blue">
                     <li><Link to="/dashboard">Dashboard</Link></li>
                     <li><Link to="/profile">Profile</Link></li>
                     <li><Link to="/signout">Sign Out</Link></li>
@@ -18,7 +17,7 @@ class Header extends Component {
             );
         } else {
             return (
-                <ul id="nav-mobile" className="float-right header-links" >
+                <ul className="page-header blue" >
                     <li><Link to="/signin">Sign In</Link> </li>
                     <li><Link to="/signup">Sign Up</Link></li>
                 </ul>
