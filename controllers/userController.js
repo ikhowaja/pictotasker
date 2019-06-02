@@ -46,7 +46,7 @@ const twilioAccountSid = 'AC5938395f66b03f9813dd368aff0b73c2';
 const twilioApiKey = 'SKe9438e45ca3b4ccb8fa5523b2aab5a27';
 const twilioApiSecret = 'xHk8eTFBdHZzJC7uFyesstqoyoqXzrxk';
 const videoGrant = new VideoGrant({
-  room: 'Picot',
+  room: 'Picto',
 });
 const twilioToken = new AccessToken(twilioAccountSid, twilioApiKey, twilioApiSecret);
 
@@ -77,7 +77,7 @@ router.post('/users/signin', function (req, res, next) {
           password: req.body.password,
           fullname: req.body.fullname,
           country: req.body.country,
-
+ 
         };
         res.send({ token: tokenForUser(payload) });
       } else {
@@ -91,6 +91,31 @@ router.post('/users/signin', function (req, res, next) {
     }
   });
 });
+/*----------------------------------------------------------------------------------------------*/
+router.post('/users/delete', function (req, res, next) {
+  mydb.find({
+    selector: { username: req.body.username }
+  }, function (err, body) {
+    if (!err) {
+      var user = body.docs[0];
+      id = user._id;
+      rev = user._rev;
+      mydb.destroy(id, rev, function (err, body, header) {
+        if (!err) {
+          return res.status(200).json({ success: 'success' });
+        }
+        else {
+          return res.status(400).json({ error: err });
+        }
+      });
+
+    } else {
+      return res.status(400).json({ error: err });
+
+    }
+  });
+});
+
 /*------------------------------------Delete----------------------------------------------------*/
 router.post('/users/delete', function (req, res, next) {
   mydb.find({
@@ -172,13 +197,12 @@ function tokenForUser(user) {
 
 
 
-
 router.post('/users/signup', function (req, res, next) {
+
   var username = req.body.username;
   var password = req.body.password;
   var fullname = req.body.fullname;
   var country = req.body.country;
-  var file=req.file;
 
   var schema = 'User'
   if (!username || !password) {
@@ -189,18 +213,13 @@ router.post('/users/signup', function (req, res, next) {
     password: password,
     fullname: fullname,
     country: country,
-    file:file,
     schema: schema
   }
   mydb.insert(user, function (err, body) {
     if (err) { return next(err); }
     res.json({ token: tokenForUser(user), user: user })
   });
-  if (!err)
-    return res.send(200).end();
 });
-
-
 
 
 

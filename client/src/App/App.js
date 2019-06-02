@@ -5,8 +5,9 @@ import List from './pages/List';
 import Header from './components/header'
 import Footer from './components/footer'
 import Chat from './views/chat'
-//import Login from './views/login'
+import Signin from './views/signin'
 import Signup from './views/signup'
+import Signout from './views/signout'
 import Dashboard from './views/dashboard'
 import Profile from './views/profile'
 import Videochat from './views/videochat';
@@ -53,8 +54,10 @@ async componentDidMount() {
           <Route exact path='/' component={Home}/>
           <Route path='/list' component={List}/>
           <Route path='/chat' component={Chat}/>
-          {/* <Route path='/login' component={Login}/> */}
+          <Route path='/signin' component={Signin}/>
           <Route path='/signup' component={Signup} />
+          <Route path="/signout" component={Signout} />
+
           <Route path='/profile' component={Profile} />
           <Route path="/dashboard" render={()=><Dashboard name={this.state.data} />} />
           <Route exact path='/videochat' render={(props) => <Videochat name={this.state.data} />} />

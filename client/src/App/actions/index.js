@@ -5,7 +5,7 @@ import { AUTH_USER, AUTH_ERROR } from './type';
 export const signup = (formProps, callback) => async dispatch => {
   try {
     const response = await axios.post(
-      'https://liveup.mybluemix.net/users/signup',
+      'https://infinite-oasis-18891.herokuapp.com/users/signup',
       formProps
     );
 
@@ -17,21 +17,21 @@ export const signup = (formProps, callback) => async dispatch => {
   }
 };
 
-// export const signin = (formProps, callback) => async dispatch => {
-//   try {
-//     const response = await axios.post(
-//       'https://liveup.mybluemix.net/users/signin',
-//       formProps
-//     );
+export const signin = (formProps, callback) => async dispatch => {
+  try {
+    const response = await axios.post(
+      'https://infinite-oasis-18891.herokuapp.com/users/signin',
+      formProps
+    );
     
-//     dispatch({ type: AUTH_USER, payload: response.data.token});
-//     localStorage.setItem('token', response.data.token);
-//     localStorage.setItem('user',formProps.username)
-//     callback();
-//   } catch (e) {
-//     dispatch({ type: AUTH_ERROR, payload: 'Invalid login credentials' });
-//   }
-// };
+    dispatch({ type: AUTH_USER, payload: response.data.token});
+    localStorage.setItem('token', response.data.token);
+    localStorage.setItem('user',formProps.username)
+    callback();
+  } catch (e) {
+    dispatch({ type: AUTH_ERROR, payload: 'Invalid login credentials' });
+  }
+};
 
 export const signout = () => {
   localStorage.removeItem('token');

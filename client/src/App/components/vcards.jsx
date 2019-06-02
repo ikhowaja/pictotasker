@@ -17,7 +17,6 @@ class vcards extends Component {
             newusername: this.props.data.username,
             newtoken: '',
             show: '',
-
             newcaller: '',
             newcalled: ''
 
@@ -26,12 +25,9 @@ class vcards extends Component {
         this.previewTracks = null;
         this.identity = null;
         this.roomName = 'Launchpad';
-
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.roomJoined = this.roomJoined.bind(this);
-
-
     }
     handleClose() {
         this.setState({ show: false });
@@ -41,10 +37,7 @@ class vcards extends Component {
 
         }
         console.log("Closed")
-
-        
     }
-
     handleShow() {
         var self = this
         this.setState({ show: true });
@@ -73,42 +66,27 @@ class vcards extends Component {
         Video.connect(this.state.newtoken, connectOptions).then(this.roomJoined, error => {
             alert('Could not connect to Twilio: ' + error.message);
         });
-     
-
-
     }
-
     componentDidMount() {
-       
         var elems = document.querySelectorAll('.modal');
         M.Modal.init(elems, { opacity: 1 });
         var self = this;
-        
         axios.post('https://infinite-oasis-18891.herokuapp.com/token', {
             username: self.state.newusername
-          
-        })
-            .then(function (response) {
- 
+        }).then(function (response) {
                 self.setState({ newtoken: response.data });
                 console.log(self.state.newtoken)
 
             }).catch(function (error) {
                 console.log(error);
             })
-
-
-      
     }
-
-
     attachTracks(tracks, container) {
         tracks.forEach(track => {
           container.appendChild(track.attach());
         });
       }
       
-      // Attach the Participant's Tracks to the DOM.
       attachParticipantTracks(participant, container) {
         var tracks = Array.from(participant.tracks.values());
         this.attachTracks(tracks, container);
@@ -130,8 +108,6 @@ class vcards extends Component {
         console.log(room)
         this.activeRoom = room;
         window.room = room.name;
-        // Called when a participant joins a room
-
         if (this.refs.localMedia) {
             var previewContainer = this.refs.localMedia
             if (!previewContainer.querySelector("video")) {
@@ -145,19 +121,14 @@ class vcards extends Component {
             room.on('participantConnected', participant => {
                 console.log("Joining: '" + participant.identity + "'");
             });
-
             room.on('trackAdded', (track, participant) => {
                 var previewContainer = this.refs.remoteMedia;
                 this.attachTracks([track], previewContainer);
             });
-
-
-
             room.on('participantDisconnected', participant => {
                 console.log("Participant '" + participant.identity + "' left the room");
                 this.detachParticipantTracks(participant);
             });
-
             room.on('disconnected', () => {
                 if (this.previewTracks) {
                     this.previewTracks.forEach(track => {
@@ -170,14 +141,7 @@ class vcards extends Component {
                 this.setState({ hasJoinedRoom: false, localMediaAvailable: false });
             });
         }
-
-
-
     }
-
-
-
-
     render() {
         let userMessage;
         if (this.state.show === true) {
@@ -198,7 +162,6 @@ class vcards extends Component {
             )
         }
         return (
-
             <div>
                 <div className="row">
                     <div className="col s12 m3">
