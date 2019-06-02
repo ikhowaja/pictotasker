@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css/dist/js/materialize.min.js'
 import '../css/profileandpcards.css';
+import user from '../images/user.ico';
 import Pcards from '../components/pcards'
 import M from "materialize-css";
 import { Form, Button } from 'react-bootstrap';
@@ -91,6 +92,9 @@ class Profile extends Component {
                             <div className="card">
                                 <h1 className="PofileTitile">Hall of Fame</h1>
                                 <span className="card-title"> {localStorage.getItem('user')}</span>
+                                <div className="card-image cardimg">
+                                    <img src={user} alt="Profile" />
+                                </div>
                                 <a className="waves-effect waves-light btn-small modal-trigger" href="#modal1">Edit Profile</a>
                                 <br></br>
                                 <Link to="/videochat" className="waves-effect waves-light btn-small">Call Someone</Link>
