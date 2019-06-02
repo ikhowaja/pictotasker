@@ -14,7 +14,7 @@ class Pcards extends Component {
                 <div className="card horizontal">
                     <div className="card-stacked"></div>
                     <div className="card-content">
-                        <img src={image} className="taskimage"></img>
+                       
                         <div className="tasktext">
                         <ul>
                             <li><Checkbox /> <p className="tasklist">Get Apple</p></li>

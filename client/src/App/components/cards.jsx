@@ -11,12 +11,10 @@ class Cards extends Component {
         return (
             <div className="ui card">
                 <div className="content">
-                    <img className="ui large avatar imagef left floated meta" src={image} alt="first" />
+                  
                     <span className=" left floated meta profilename"><b>{this.props.user}</b></span>
                 </div>
-                <div className="image">
-                    <img src={image} alt="second" />
-                </div>
+              
                 <div className="content">
                     <span className="left floated">
                         <i className="circular thumbs up outline icon"></i>

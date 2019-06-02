@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css/dist/js/materialize.min.js'
 import '../css/profileandpcards.css';
-import image from '../images/osama.jpg'
 import Pcards from '../components/pcards'
 import M from "materialize-css";
 import { Form, Button } from 'react-bootstrap';
@@ -25,7 +24,7 @@ class Profile extends Component {
         this.handleChangeFullName = this.handleChangeFullName.bind(this);
         this.handleChangeCountry = this.handleChangeCountry.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-      
+
     }
     handleChangeUsername(e) {
         this.setState({ username: e.target.value });
@@ -91,14 +90,13 @@ class Profile extends Component {
                         <div className="col s12 m7">
                             <div className="card">
                                 <h1 className="PofileTitile">Hall of Fame</h1>
-                                <img src={image} className="ProfileImage"></img>
                                 <span className="card-title"> {localStorage.getItem('user')}</span>
                                 <a className="waves-effect waves-light btn-small modal-trigger" href="#modal1">Edit Profile</a>
                                 <br></br>
                                 <Link to="/videochat" className="waves-effect waves-light btn-small">Call Someone</Link>
                                 <br></br>
                                 <Link to="/videochat" className="waves-effect waves-light btn-small">Chat Global Group</Link>
-                               
+
                                 <div className="card-content">
                                     <h3 className="PofileTitile">Tasks Completed</h3>
                                     <Pcards></Pcards>
