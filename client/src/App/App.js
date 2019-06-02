@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Home from './pages/Home';
-import List from './pages/List';
 import Header from './components/header'
-import Footer from './components/footer'
 import Chat from './views/chat'
 import Signin from './views/signin'
 import Signup from './views/signup'
@@ -51,8 +48,7 @@ async componentDidMount() {
       <div>
         <Header/>
         <Switch>
-          <Route exact path='/' component={Home}/>
-          <Route path='/list' component={List}/>
+          <Route exact path='/' component={Signin}/>
           <Route path='/chat' component={Chat}/>
           <Route path='/signin' component={Signin}/>
           <Route path='/signup' component={Signup} />
@@ -64,7 +60,6 @@ async componentDidMount() {
          {/* // <Route path='/dashboard' component={Dashboard} /> */}
 
         </Switch>
-        <Footer />
       </div>
     </Provider>
     )

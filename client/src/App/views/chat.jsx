@@ -36,7 +36,6 @@ class Chat extends React.Component{
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-4">
                         <div className="card">
                             <div className="card-body">
                                 <div className="card-title">Global Chat</div>
@@ -51,14 +50,11 @@ class Chat extends React.Component{
 
                             </div>
                             <div className="card-footer">
-                                <input type="text" placeholder="Username" value={this.state.username} onChange={ev => this.setState({username: ev.target.value})} className="form-control"/>
-                                <br/>
-                                <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
+                                <textarea placeholder="Type Message here..." rows="10" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}></textarea>
                                 <br/>
                                 <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         );
