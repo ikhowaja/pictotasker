@@ -16,7 +16,7 @@ class Dashboard extends Component {
                     return (
                         <div>
                             <br></br>
-                            <Cards key={value.username} data={value.password} user={value.username} />
+                            <Cards key={value.username} data={value.password} user={value.username} task={value.task}/>
                         </div>
                     )
                 }

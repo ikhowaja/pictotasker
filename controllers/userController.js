@@ -174,6 +174,31 @@ router.post('/users/update', function (req, res, next) {
   });
 });
 
+/*-----------------------------------Update-----------------------------------------------------------*/
+router.post('/users/updatetask', function (req, res, next) {
+  mydb.find({
+    selector: { username: req.body.username }
+  }, function (err, body) {
+    if (!err) {
+      var user = body.docs[0];
+      id = user._id;
+      rev = user._rev;
+      task = req.body.task
+        
+      mydb.insert({
+        _id: id,
+        _rev: rev,
+        username: user.username,
+        password:user. password,
+        fullname: user.fullname,
+        country: user.country,
+        task:task,
+        schema: "User"
+      })
+    }
+  });
+});
+
 /*------------------------------------For Dashboard--------------------------------*/
 router.get('/users', function (req, res, next) {
   mydb.find({
