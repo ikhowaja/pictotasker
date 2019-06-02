@@ -58,7 +58,7 @@ async componentDidMount() {
           <Route path='/signup' component={Signup} />
           <Route path="/signout" component={Signout} />
 
-          <Route path='/profile' component={Profile} />
+          <Route path='/profile'  render={()=><Profile name={this.state.data} />} component={Profile} />
           <Route path="/dashboard" render={()=><Dashboard name={this.state.data} />} />
           <Route exact path='/videochat' render={(props) => <Videochat name={this.state.data} />} />
          {/* // <Route path='/dashboard' component={Dashboard} /> */}
