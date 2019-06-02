@@ -8,6 +8,7 @@ import * as actions from '../actions';
 import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css/dist/js/materialize.min.js'
 import 'bootstrap/dist/css/bootstrap.css'
+import logo from '../images/PictoTasker2.png';
 
 class Signin extends Component {
 
@@ -23,12 +24,16 @@ class Signin extends Component {
         const { handleSubmit } = this.props;
         return (
             <div className="Login">
+
                 <div className="row">
                     <div className="col-lg-4"></div>
                     <div className="col-lg-4 myform">
                         <Form onSubmit={handleSubmit(this.onSubmit)}>
                             <div className="form-header">
-                                Login
+                                <a href="#" className="brand-logo center">
+                                    <img src={logo} width="45" height="45">
+                                    </img>
+                                </a>
                              </div>
                             <Form.Group controlId="username">
                                 <Field name="username" type="text" component="input" autoComplete="none" placeholder="Username" />

@@ -38,13 +38,13 @@
     height:auto;
     padding:5px;
     font-weight: bold;
-    background-color: #6b5b95;
+    background-color:#1A86C3;
   }
   .header-links li{
-    border: 1px solid #6b5b95;;
+    border: 1px solid #1A86C3;
   }
   .header-links li:hover{
-    border: 1px solid #878f99;
+    border: 1px solid #1A86C3;
   }
   nav a:hover{
   text-decoration: none;
