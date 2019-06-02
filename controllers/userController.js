@@ -75,18 +75,15 @@ router.post('/users/signin', function (req, res, next) {
     selector: { username: req.body.username }
   }, function (err, body) {
     if (!err) {
-      var comment=''
-      var task=''
+
       var user = body.docs[0];
       if (req.body.password == user.password) {
         var payload = {
           username: req.body.username,
           password: req.body.password,
           fullname: req.body.fullname,
-          country: req.body.country,
-          comment:comment,
-          task:task
- 
+          country: req.body.country
+
         };
         res.send({ token: tokenForUser(payload) });
       } else {
@@ -150,14 +147,13 @@ router.post('/users/delete', function (req, res, next) {
   });
 });
 
-/*-----------------------------------Update-----------------------------------------------------------*/
+/*-----------------------------------Update Profile-----------------------------------------------------------*/
 router.post('/users/update', function (req, res, next) {
   mydb.find({
     selector: { username: req.body.username }
   }, function (err, body) {
     if (!err) {
-      var comment=''
-      var task='';
+      var task = ''
       var user = body.docs[0];
       id = user._id;
       rev = user._rev;
@@ -172,14 +168,35 @@ router.post('/users/update', function (req, res, next) {
         password: password,
         fullname: fullname,
         country: country,
-        comment:comment,
-        task:task,
+        task: task,
         schema: "User"
       })
     }
   });
 });
-
+/*-----------------------------------Update Task-----------------------------------------------------------*/
+router.post('/users/updatetask', function (req, res, next) {
+  mydb.find({
+    selector: { username: req.body.username }
+  }, function (err, body) {
+    if (!err) {
+      var user = body.docs[0];
+      id = user._id;
+      rev = user._rev;
+      task = req.body.task
+      mydb.insert({
+        _id: id,
+        _rev: rev,
+        username: username,
+        password: password,
+        fullname: fullname,
+        country: country,
+        task: task,
+        schema: "User"
+      })
+    }
+  });
+});
 /*------------------------------------For Dashboard--------------------------------*/
 router.get('/users', function (req, res, next) {
   mydb.find({
@@ -217,10 +234,10 @@ router.post('/users/signup', function (req, res, next) {
   var fullname = req.body.fullname;
   var country = req.body.country;
 
-  var comment = '';
-  var task='';
+
 
   var schema = 'User'
+  var task = ''
   if (!username || !password) {
     return res.status(422).send({ error: 'You must provide username and password' });
   }
@@ -229,8 +246,7 @@ router.post('/users/signup', function (req, res, next) {
     password: password,
     fullname: fullname,
     country: country,
-    comment:comment,
-    task:task,
+    task: task,
     schema: schema
   }
   mydb.insert(user, function (err, body) {
