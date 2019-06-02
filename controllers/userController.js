@@ -1,9 +1,7 @@
 var cfenv = require("cfenv");
-// var expressJoi = require('express-joi-validator');
 const jwt = require('jwt-simple');
 var express = require("express");
-var user = require('../models/user');
-
+var cors = require('cors')
 var router = express.Router();
 const AccessToken = require('twilio').jwt.AccessToken;
 const VideoGrant = AccessToken.VideoGrant;
@@ -63,6 +61,13 @@ router.post('/token', function (req, res, next) {
   twilioToken.addGrant(videoGrant);
   res.send(twilioToken.toJwt());
 });
+router.use(cors({
+  'allowedHeaders': ['Content-Type'], // headers that React is sending to the API
+  'exposedHeaders': ['Content-Type'], // headers that you are sending back to React
+  'origin': '*',
+  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  'preflightContinue': false
+}));
 
 /*------------------------------For Signin/Login--------------------------------*/
 router.post('/users/signin', function (req, res, next) {
